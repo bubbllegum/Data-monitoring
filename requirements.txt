@@ -7,6 +7,6 @@ gspread==6.1.2
 ServiceAccountCredentials
 google-auth==2.29.0
 google-auth-oauthlib==1.0.0
-google-auth-httplib2==0.22.0
+httplib2==0.22.0
 time
 tensorflow==2.16.1
