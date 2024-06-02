@@ -2,8 +2,8 @@ streamlit
 pandas
 joblib==1.4.2
 matplotlib
-numpy== 1.26.4
+numpy==1.26.4
 gspread
 ServiceAccountCredentials  
 time
-tensorflow== 2.16.1
+tensorflow==2.16.1
