@@ -1,9 +1,11 @@
 streamlit 
 pandas
 joblib==1.4.2
-matplotlib
+matplotlib==3.9.0
 numpy==1.26.4
-gspread
-ServiceAccountCredentials  
+gspread==6.1.2
+ServiceAccountCredentials
+google-auth==2.29.0
+google-auth-oauthlib==1.0.0
 time
 tensorflow==2.16.1
