@@ -5,6 +5,7 @@ matplotlib==3.9.0
 numpy==1.26.4
 gspread==6.1.2
 ServiceAccountCredentials
+oauth2client.service_account
 google-auth==2.29.0
 google-auth-oauthlib==1.0.0
 httplib2==0.22.0
