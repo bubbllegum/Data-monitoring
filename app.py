@@ -14,9 +14,9 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('data-monitoring-424622
 client = gspread.authorize(creds)
 
 # Memuat model dan scaler yang sudah disimpan
-knn_temp = joblib.load('time_temp_model.joblib')
-knn_volt = joblib.load('time_volt_model.joblib')
-scaler = joblib.load('time_scaler.joblib')
+knn_temp = joblib.load('C:\\Users\\serenity\\model\\time_temp_model.joblib')
+knn_volt = joblib.load('C:\\Users\\serenity\\model\\time_volt_model.joblib')
+scaler = joblib.load('C:\\Users\\serenity\\model\\time_scaler.joblib')
 
 def prediksi_temp_status(suhu, tegangan):
     data_input = pd.DataFrame([[suhu, tegangan]], columns=['Temperature', 'Voltage'])
@@ -90,10 +90,9 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
     chart_placeholder.empty()
     
     with chart_placeholder.container():
-        fig = go.Figure()
-        
         # Plot Suhu
-        fig.add_trace(go.Scatter(
+        fig_suhu = go.Figure()
+        fig_suhu.add_trace(go.Scatter(
             x=time_list,
             y=suhu_list,
             mode='lines+markers',
@@ -102,20 +101,10 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
             marker=dict(size=8, color='blue')
         ))
 
-        # Plot Tegangan
-        fig.add_trace(go.Scatter(
-            x=time_list,
-            y=tegangan_list,
-            mode='lines+markers',
-            name='Tegangan',
-            line=dict(color='red', shape='spline'),
-            marker=dict(size=8, color='red')
-        ))
-        
-        fig.update_layout(
-            title='Grafik Suhu dan Tegangan',
+        fig_suhu.update_layout(
+            title='Grafik Suhu',
             xaxis_title='Waktu',
-            yaxis_title='Nilai',
+            yaxis_title='Nilai Suhu',
             legend=dict(
                 title=dict(text='Parameter', font=dict(size=12, color='black')),
                 font=dict(
@@ -145,7 +134,53 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
             )
         )
         
-        st.plotly_chart(fig)
+        st.plotly_chart(fig_suhu)
+
+        # Plot Tegangan
+        fig_tegangan = go.Figure()
+        fig_tegangan.add_trace(go.Scatter(
+            x=time_list,
+            y=tegangan_list,
+            mode='lines+markers',
+            name='Tegangan',
+            line=dict(color='red', shape='spline'),
+            marker=dict(size=8, color='red')
+        ))
+
+        fig_tegangan.update_layout(
+            title='Grafik Tegangan',
+            xaxis_title='Waktu',
+            yaxis_title='Nilai Tegangan',
+            legend=dict(
+                title=dict(text='Parameter', font=dict(size=12, color='black')),
+                font=dict(
+                    size=12,
+                    color='black'
+                )
+            ),
+            hovermode='x unified',
+            plot_bgcolor='white',
+            paper_bgcolor='white',
+            xaxis=dict(
+                showgrid=True,
+                gridcolor='lightgrey',
+                tickfont=dict(color='black'),
+                titlefont=dict(color='black')
+            ),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor='lightgrey',
+                tickfont=dict(color='black'),
+                titlefont=dict(color='black')
+            ),
+            font=dict(
+                family="Arial, sans-serif",
+                size=12,
+                color="black"
+            )
+        )
+        
+        st.plotly_chart(fig_tegangan)
 
         # Plot TempStatus
         fig_temp_status = go.Figure()
@@ -257,10 +292,9 @@ def plot_prediksi_30_hari(data, chart_placeholder):
     chart_placeholder.empty()
     
     with chart_placeholder.container():
-        fig = go.Figure()
-        
         # Plot Suhu Prediksi
-        fig.add_trace(go.Scatter(
+        fig_suhu_prediksi = go.Figure()
+        fig_suhu_prediksi.add_trace(go.Scatter(
             x=time_list,
             y=future_suhu,
             mode='lines+markers',
@@ -269,20 +303,10 @@ def plot_prediksi_30_hari(data, chart_placeholder):
             marker=dict(size=8, color='blue')
         ))
 
-        # Plot Tegangan Prediksi
-        fig.add_trace(go.Scatter(
-            x=time_list,
-            y=future_tegangan,
-            mode='lines+markers',
-            name='Tegangan Prediksi',
-            line=dict(color='red', shape='spline'),
-            marker=dict(size=8, color='red')
-        ))
-        
-        fig.update_layout(
-            title='Grafik Prediksi Suhu dan Tegangan 30 Hari ke Depan',
+        fig_suhu_prediksi.update_layout(
+            title='Grafik Prediksi Suhu 30 Hari ke Depan',
             xaxis_title='Waktu',
-            yaxis_title='Nilai',
+            yaxis_title='Nilai Suhu',
             legend=dict(
                 title=dict(text='Parameter', font=dict(size=12, color='black')),
                 font=dict(
@@ -312,11 +336,57 @@ def plot_prediksi_30_hari(data, chart_placeholder):
             )
         )
         
-        st.plotly_chart(fig)
+        st.plotly_chart(fig_suhu_prediksi)
+
+        # Plot Tegangan Prediksi
+        fig_tegangan_prediksi = go.Figure()
+        fig_tegangan_prediksi.add_trace(go.Scatter(
+            x=time_list,
+            y=future_tegangan,
+            mode='lines+markers',
+            name='Tegangan Prediksi',
+            line=dict(color='red', shape='spline'),
+            marker=dict(size=8, color='red')
+        ))
+
+        fig_tegangan_prediksi.update_layout(
+            title='Grafik Prediksi Tegangan 30 Hari ke Depan',
+            xaxis_title='Waktu',
+            yaxis_title='Nilai Tegangan',
+            legend=dict(
+                title=dict(text='Parameter', font=dict(size=12, color='black')),
+                font=dict(
+                    size=12,
+                    color='black'
+                )
+            ),
+            hovermode='x unified',
+            plot_bgcolor='white',
+            paper_bgcolor='white',
+            xaxis=dict(
+                showgrid=True,
+                gridcolor='lightgrey',
+                tickfont=dict(color='black'),
+                titlefont=dict(color='black')
+            ),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor='lightgrey',
+                tickfont=dict(color='black'),
+                titlefont=dict(color='black')
+            ),
+            font=dict(
+                family="Arial, sans-serif",
+                size=12,
+                color="black"
+            )
+        )
+        
+        st.plotly_chart(fig_tegangan_prediksi)
 
         # Plot TempStatus Prediksi
-        fig_temp_status = go.Figure()
-        fig_temp_status.add_trace(go.Scatter(
+        fig_temp_status_prediksi = go.Figure()
+        fig_temp_status_prediksi.add_trace(go.Scatter(
             x=time_list,
             y=future_temp_status_list,
             mode='lines+markers',
@@ -325,7 +395,7 @@ def plot_prediksi_30_hari(data, chart_placeholder):
             marker=dict(size=8, color='green')
         ))
 
-        fig_temp_status.update_layout(
+        fig_temp_status_prediksi.update_layout(
             title='TempStatus Terprediksi 30 Hari ke Depan',
             xaxis_title='Waktu',
             yaxis_title='TempStatus',
@@ -358,11 +428,11 @@ def plot_prediksi_30_hari(data, chart_placeholder):
             )
         )
         
-        st.plotly_chart(fig_temp_status)
+        st.plotly_chart(fig_temp_status_prediksi)
         
         # Plot VoltStatus Prediksi
-        fig_volt_status = go.Figure()
-        fig_volt_status.add_trace(go.Scatter(
+        fig_volt_status_prediksi = go.Figure()
+        fig_volt_status_prediksi.add_trace(go.Scatter(
             x=time_list,
             y=future_volt_status_list,
             mode='lines+markers',
@@ -371,7 +441,7 @@ def plot_prediksi_30_hari(data, chart_placeholder):
             marker=dict(size=8, color='purple')
         ))
 
-        fig_volt_status.update_layout(
+        fig_volt_status_prediksi.update_layout(
             title='VoltStatus Terprediksi 30 Hari ke Depan',
             xaxis_title='Waktu',
             yaxis_title='VoltStatus',
@@ -404,7 +474,7 @@ def plot_prediksi_30_hari(data, chart_placeholder):
             )
         )
         
-        st.plotly_chart(fig_volt_status)
+        st.plotly_chart(fig_volt_status_prediksi)
 
 def perbarui_visualisasi(sheet, chart_placeholder, last_data):
     data = pd.DataFrame(sheet.get_all_records())
@@ -438,7 +508,7 @@ def main():
         while auto_update:
             with chart_placeholder.container():
                 last_data = perbarui_visualisasi(sheet, chart_placeholder, last_data)
-            time.sleep(30)  # Check for updates every 60 seconds
+            time.sleep(30)  # Check for updates every 30 seconds
         
         st.write("Pembaruan otomatis dihentikan.")
     
