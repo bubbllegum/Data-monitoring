@@ -14,9 +14,9 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('data-monitoring-424622
 client = gspread.authorize(creds)
 
 # Memuat model dan scaler yang sudah disimpan
-knn_temp = joblib.load('C:\\Users\\serenity\\model\\time_temp_model.joblib')
-knn_volt = joblib.load('C:\\Users\\serenity\\model\\time_volt_model.joblib')
-scaler = joblib.load('C:\\Users\\serenity\\model\\time_scaler.joblib')
+knn_temp = joblib.load('time_temp_model.joblib')
+knn_volt = joblib.load('time_volt_model.joblib')
+scaler = joblib.load('time_scaler.joblib')
 
 def prediksi_temp_status(suhu, tegangan):
     data_input = pd.DataFrame([[suhu, tegangan]], columns=['Temperature', 'Voltage'])
