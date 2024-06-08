@@ -574,6 +574,9 @@ def main():
         - Google Sheets API untuk penyimpanan data.
         - Model Machine Learning untuk prediksi status suhu dan tegangan.
         - Streamlit untuk tampilan antarmuka pengguna yang interaktif.
+        
+        **Pengembang:**
+        -syahrul abidin a yani
         """)
 
     elif choice == "Contact Us":
