@@ -559,10 +559,9 @@ def main():
         plot_prediksi_30_hari(data, chart_placeholder)
 
     elif choice == "Tentang":
-        st.subheader("Tentang")
         st.write("""
         ### Tentang Aplikasi Monitoring
-        Aplikasi ini dirancang untuk memonitor suhu dan tegangan secara real-time menggunakan data yang diambil dari sensor dan disimpan di Google Sheets, dan di kembangkan oleh syahrul abidin a yani
+        Aplikasi ini dirancang untuk memonitor suhu dan tegangan secara real-time menggunakan data yang diambil dari sensor dan disimpan di Google Sheets.
         
         **Fitur Utama:**
         - Monitoring suhu dan tegangan secara real-time.
