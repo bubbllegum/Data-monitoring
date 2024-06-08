@@ -576,7 +576,7 @@ def main():
         - Streamlit untuk tampilan antarmuka pengguna yang interaktif.
         
         **Pengembang:**
-        -syahrul abidin a yani
+        syahrul abidin a yani
         """)
 
     elif choice == "Contact Us":
