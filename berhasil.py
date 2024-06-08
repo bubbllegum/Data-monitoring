@@ -545,7 +545,7 @@ def main():
         while auto_update:
             with chart_placeholder.container():
                 last_data = perbarui_visualisasi(sheet, chart_placeholder, last_data)
-            time.sleep(15)  # Check for updates every 15 seconds
+            time.sleep(15)  # Check for updates every 30 seconds
         
         st.write("Pembaruan otomatis dihentikan.")
     
