@@ -111,8 +111,8 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -157,8 +157,8 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -203,8 +203,8 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -249,8 +249,8 @@ def plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, ti
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -329,8 +329,8 @@ def plot_prediksi_30_hari(data, chart_placeholder):
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -375,8 +375,8 @@ def plot_prediksi_30_hari(data, chart_placeholder):
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -421,8 +421,8 @@ def plot_prediksi_30_hari(data, chart_placeholder):
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -467,8 +467,8 @@ def plot_prediksi_30_hari(data, chart_placeholder):
                 )
             ),
             hovermode='x unified',
-            plot_bgcolor='black',
-            paper_bgcolor='black',
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
             xaxis=dict(
                 showgrid=True,
                 gridcolor='grey',
@@ -501,64 +501,63 @@ def perbarui_visualisasi(sheet, chart_placeholder, last_data):
         plot_grafik(suhu_list, tegangan_list, temp_status_list, volt_status_list, time_list, chart_placeholder)
     return data
 
-# Fungsi utama untuk aplikasi Streamlit
 def main():
     st.set_page_config(page_title="Aplikasi Monitoring Suhu dan Tegangan", layout="wide", initial_sidebar_state="expanded", page_icon="🐣")
     
-    # Menggunakan streamlit-option-menu untuk navbar yang lebih interaktif
+    # Sidebar dengan logo dan gambar di atas menu
     with st.sidebar:
-        choice = option_menu(
-            "Menu",
-            ["Home", "Monitoring", "Prediksi 30 Hari", "Tentang", "Contact Us"],
-            icons=["house", "activity", "calendar", "info-circle", "phone"],
-            menu_icon="cast",
-            default_index=0,
-            styles={
-                "container": {"padding": "5px"},
-                "icon": {"color": "#FAFAFA", "font-size": "25px"}, 
-                "nav-link": {
-                    "font-size": "16px", 
-                    "text-align": "left", 
-                    "margin": "0px", 
-                    "--hover-color": "#575757",
-                },
-                "nav-link-selected": {"background-color": "#02ab21"},
-            }
+        st.markdown(
+            """
+            <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="https://raw.githubusercontent.com/sahirmaharaj/exifa/main/img/Exifa.gif" alt="logo" style="width: 60px; height: 60px;">
+                    <span style="font-family: 'Cursive', sans-serif; font-size: 24px; color: white; animation: fadeIn 2s infinite;">𝔹𝕦𝕚𝕝𝕥 𝕓𝕪 𝕊𝕪𝕒𝕙𝕣𝕦𝕝 𝔸𝕓𝕚𝕕𝕚𝕟 𝔸 𝕐𝕒𝕟𝕚</span>
+                </div>
+                <div style="margin-top: 20px;">
+                    <img src="https://img.freepik.com/premium-photo/sweet-funny-baby-chick-wearing-fashion-sunglasses-generative-ai_666746-909.jpg?w=826" style="width: 100%;">
+                </div>
+            </div>
+            <style>
+                @keyframes fadeIn {
+                    0% { opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+            </style>
+            """,
+            unsafe_allow_html=True,
         )
-    
-    if choice == "Home":
+        st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+        with st.expander("Menu"):
+            main_page = st.selectbox("Pilih Halaman Utama", ["Home", "Tentang"])
+        st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+        with st.expander("Model Configuration"):
+            model_page = st.selectbox("Pilih Halaman Model", ["Monitoring", "Prediksi 30 Hari"])
+        
+        # Menambahkan logo WhatsApp, Instagram, dan Email GIF dengan jarak dan posisi
+        st.markdown(
+            """
+            <div style="margin-top: 20px;">
+                <a href="https://wa.me/085890243536" target="_blank" style="margin-right: 20px;">
+                    <img src="https://raw.githubusercontent.com/sahirmaharaj/exifa/main/img/topmate.gif" alt="WhatsApp" style="width: 40px; height: 40px;">
+                </a>
+                <a href="https://www.instagram.com/oyyrulll" target="_blank" style="margin-right: 20px;">
+                    <img src="https://raw.githubusercontent.com/sahirmaharaj/exifa/main/img/newsletter.gif" alt="Instagram" style="width: 40px; height: 40px;">
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syahrul.abidin234@gmail.com" target="_blank">
+                    <img src="https://raw.githubusercontent.com/sahirmaharaj/exifa/main/img/email.gif" alt="Email" style="width: 40px; height: 40px;">
+                </a>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    if main_page == "Home":
         st.write("<h1 style='text-align: center; color: white;'>Aplikasi Monitoring Suhu dan Tegangan</h1>", unsafe_allow_html=True)
-        st.write("<div style='text-align: center; color: white;'>Aplikasi Ini Memungkinkan Anda Untuk memonitiroing dan memprediksi temperature dan voltage untuk 30 hari</div>", unsafe_allow_html=True)
+        st.write("<div style='text-align: center; color: white;'>Aplikasi Ini Memungkinkan Anda Untuk memonitoring dan memprediksi temperature dan voltage untuk 30 hari</div>", unsafe_allow_html=True)
         st.markdown("<div style='text-align: center; color: white;'>Status yang ditampilkan: 1 untuk low, 2 untuk normal, dan 3 untuk high.</div>", unsafe_allow_html=True)
-        st.image("https://img.freepik.com/premium-photo/sweet-funny-baby-chick-wearing-fashion-sunglasses-generative-ai_666746-909.jpg?w=826", use_column_width=True)
-    
-    elif choice == "Monitoring":
-        st.write("<h1 style='text-align: center; color: white;'>Monitoring suhu dan tegangan</h1>", unsafe_allow_html=True)
-        sheet_url = 'https://docs.google.com/spreadsheets/d/1t3iwJI4UICYilpjplZ2KbGwJ4MQEsbCWL2AGaXvX_mQ/edit#gid=0'
-        sheet = client.open_by_url(sheet_url).sheet1
-        chart_placeholder = st.empty()
-        last_data = pd.DataFrame()
 
-        # Placeholder untuk memulai/menghentikan pembaruan otomatis
-        auto_update = st.checkbox('Mulai Pembaruan Otomatis', value=True)
-        
-        while auto_update:
-            with chart_placeholder.container():
-                last_data = perbarui_visualisasi(sheet, chart_placeholder, last_data)
-            time.sleep(15)  # Check for updates every 30 seconds
-        
-        st.write("Pembaruan otomatis dihentikan.")
-    
-    elif choice == "Prediksi 30 Hari":
-        st.write("<h1 style='text-align: center; color: white;'>Prediksi 30 hari</h1>", unsafe_allow_html=True)
-        sheet_url = 'https://docs.google.com/spreadsheets/d/1t3iwJI4UICYilpjplZ2KbGwJ4MQEsbCWL2AGaXvX_mQ/edit#gid=0'
-        sheet = client.open_by_url(sheet_url).sheet1
-        data = pd.DataFrame(sheet.get_all_records())
-        data = bersihkan_data(data)
-        chart_placeholder = st.empty()
-        plot_prediksi_30_hari(data, chart_placeholder)
-
-    elif choice == "Tentang":
+    elif main_page == "Tentang":
         st.write("<h1 style='text-align: center; color: white;'>Aplikasi monitoring suhu dan tegangan</h1>", unsafe_allow_html=True)
         st.write("""
         ### Tentang Aplikasi Monitoring
@@ -579,63 +578,31 @@ def main():
         syahrul abidin a yani
         """)
 
-    elif choice == "Contact Us":
-        st.write("<h1 style='text-align: center; color: white;'>Contact Us:</h1>", unsafe_allow_html=True)
-        contact_option = option_menu(
-            menu_title="Select Contact Method",
-            options=["WhatsApp", "Email", "Instagram"],
-            icons=["whatsapp", "envelope", "instagram"],
-            menu_icon="cast",
-            default_index=0,
-            orientation="horizontal",
-            styles={
-                "container": {"padding": "5px"},
-                "icon": {"color": "#FAFAFA", "font-size": "25px"}, 
-                "nav-link": {
-                    "font-size": "16px", 
-                    "text-align": "left", 
-                    "margin": "0px", 
-                    "--hover-color": "#575757",
-                },
-                "nav-link-selected": {"background-color": "#02ab21"},
-            }
-        )
+    if model_page == "Monitoring":
+        st.write("<h1 style='text-align: center; color: white;'>Monitoring suhu dan tegangan</h1>", unsafe_allow_html=True)
+        sheet_url = 'https://docs.google.com/spreadsheets/d/1t3iwJI4UICYilpjplZ2KbGwJ4MQEsbCWL2AGaXvX_mQ/edit#gid=0'
+        sheet = client.open_by_url(sheet_url).sheet1
+        chart_placeholder = st.empty()
+        last_data = pd.DataFrame()
 
-        if contact_option == "WhatsApp":
-            st.markdown(
-                """
-                <div style='text-align: center; color: white;'>
-                    <a href='https://wa.me/085890243536' target='_blank' style='text-decoration: none; color: white;'>
-                        <img src='https://img.icons8.com/ios-filled/50/FAFAFA/whatsapp.png' alt='WhatsApp' style='width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;'>
-                        WhatsApp: 085890243536
-                    </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        elif contact_option == "Email":
-            st.markdown(
-                """
-                <div style='text-align: center; color: white;'>
-                    <a href='https://mail.google.com/mail/?view=cm&fs=1&to=syahrul.abidin234@gmail.com' target='_blank' style='text-decoration: none; color: white;'>
-                        <img src='https://img.icons8.com/ios-filled/50/FAFAFA/new-post.png' alt='Email' style='width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;'>
-                        Email: syahrul.abidin234@gmail.com
-                    </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        elif contact_option == "Instagram":
-            st.markdown(
-                """
-                <div style='text-align: center; color: white;'>
-                    <a href='https://www.instagram.com/oyyrulll' target='_blank' style='text-decoration: none; color: white;'>
-                        <img src='https://img.icons8.com/ios-filled/50/FAFAFA/instagram-new.png' alt='Instagram' style='width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;'>
-                        Instagram: @oyyrulll
-                    </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )   
+        # Placeholder untuk memulai/menghentikan pembaruan otomatis
+        auto_update = st.checkbox('Mulai Pembaruan Otomatis', value=True)
+        
+        while auto_update:
+            with chart_placeholder.container():
+                last_data = perbarui_visualisasi(sheet, chart_placeholder, last_data)
+            time.sleep(15)  # Check for updates every 15 seconds
+        
+        st.write("Pembaruan otomatis dihentikan.")
+    
+    if model_page == "Prediksi 30 Hari":
+        st.write("<h1 style='text-align: center; color: white;'>Prediksi 30 hari</h1>", unsafe_allow_html=True)
+        sheet_url = 'https://docs.google.com/spreadsheets/d/1t3iwJI4UICYilpjplZ2KbGwJ4MQEsbCWL2AGaXvX_mQ/edit#gid=0'
+        sheet = client.open_by_url(sheet_url).sheet1
+        data = pd.DataFrame(sheet.get_all_records())
+        data = bersihkan_data(data)
+        chart_placeholder = st.empty()
+        plot_prediksi_30_hari(data, chart_placeholder)
+
 if __name__ == "__main__":
     main()
