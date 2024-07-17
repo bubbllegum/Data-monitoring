@@ -528,10 +528,10 @@ def main():
             unsafe_allow_html=True,
         )
         st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
-        with st.expander("Menu"):
+        with st.expander("台 Menu"):
             main_page = st.selectbox("Pilih Halaman Utama", ["Home", "Tentang"])
         st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
-        with st.expander("Model Configuration"):
+        with st.expander("🛠 Model Configuration"):
             model_page = st.selectbox("Pilih Halaman Model", ["Monitoring", "Prediksi 30 Hari"])
         
         # Menambahkan logo WhatsApp, Instagram, dan Email GIF dengan jarak dan posisi
