@@ -66,8 +66,8 @@ def proses_spreadsheet(data):
     volt_status_list = []
     time_list = []
     data = bersihkan_data(data)
-    if len(data) > 50:
-        data = data.iloc[-50:]
+    if len(data) > 100:
+        data = data.iloc[-100:]
     for index, row in data.iterrows():
         suhu = row['Temperature']
         tegangan = row['Voltage']
